@@ -27,7 +27,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                       spreadRadius: 5)
                 ]),
             child: Column(
-              children: <Widget>[],
+              children: <Widget>[
+                DecoratedTextField(),
+                SheetButton(),
+              ],
             ),
           ),
         ],
