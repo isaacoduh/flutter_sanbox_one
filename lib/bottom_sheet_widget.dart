@@ -53,3 +53,41 @@ class DecoratedTextField extends StatelessWidget {
     );
   }
 }
+
+class SheetButton extends StatefulWidget {
+  @override
+  _SheetButtonState createState() => _SheetButtonState();
+}
+
+class _SheetButtonState extends State<SheetButton> {
+  bool verifyingBooking = false;
+  bool verified = false;
+  @override
+  Widget build(BuildContext context) {
+    return !verifyingBooking
+        ? MaterialButton(
+            color: Colors.blueAccent[700],
+            onPressed: () async {
+              setState(() {
+                verifyingBooking = true;
+              });
+              await Future.delayed(Duration(seconds: 3));
+              setState(() {
+                verified = true;
+              });
+              await Future.delayed(Duration(milliseconds: 500));
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Check Booking',
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+        : !verified
+            ? CircularProgressIndicator()
+            : Icon(
+                Icons.check,
+                color: Colors.green,
+              );
+  }
+}
